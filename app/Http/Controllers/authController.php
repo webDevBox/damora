@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use App\User;
+use App\Mail\damoramail;
+
 class authController extends Controller
 {
   //Register Account
@@ -28,21 +31,31 @@ class authController extends Controller
           $user->email=$request->email;
           $user->password=bcrypt($request->password);
           $user->userRole=$request->type;
-          if($request->type == 2)
-          {
-              $status='Buyer';
-              $user->status=1;
-              $user->credit=0;
-          }
           if($request->type == 3)
           {
               $status='Researcher';
               $user->status=0;
               $user->credit=0;
           }
+          if($request->type == 2)
+          {
+              $status='Buyer';
+              $user->status=1;
+              $user->credit=0;
+
+              $mail=[
+                'body'=>'Your Acount need verification'
+            ];
+            Mail::to($request->email)->send(new damoramail($mail));
+          }
           $user->save();
           if($user->save())
           {
+            if($request->type == 2)
+            {
+                return redirect()->back()->with('success','Please Check Your Email');
+
+            }
             return redirect()->back()->with('success','Your Are Registered Successfully as '.$status);
           }
           else
