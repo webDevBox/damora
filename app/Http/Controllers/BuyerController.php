@@ -213,7 +213,7 @@ class BuyerController extends Controller
 
         //Signals Download
       public function file_down($id)
-      {
+        {
           if (Auth::check()) {
               if($this->user->userRole != 2)
               {
@@ -245,7 +245,7 @@ class BuyerController extends Controller
            $transaction->signal=$id;
            $transaction->save();
            return redirect()->back()->with('ready','You can download File before Page Reload');
-     }
+        }
         //Services List
         public function services()
         {

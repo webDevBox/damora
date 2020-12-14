@@ -12,7 +12,7 @@
     @endif 
         
     <div class="table-responsive">
-        <table class="table table-borderless table-hover table-md table-lg">
+        <table class="table table-bordered table-hover table-md table-lg">
             <thead>
                  <tr>
                      <th class="text-center">No. </th>
@@ -42,7 +42,7 @@
                 <td class="text-center" scope="row" style=" padding: 30px 0;">{{$row->price}}</td>
                 <td class="text-center" scope="row" style=" padding: 30px 0;">{{$row->duration}}</td>
                 <td class="text-center" scope="row" style=" padding: 30px 0;">  
-                <a  data-toggle="modal" href="#description" id="{{$row->description}}" class="clicker btn-theme"> View </a>
+                 <p style=" text-align: justify; text-justify: inter-word;"> {{$row->description}} </p>
                 </td>
 
                 <td class="text-center" scope="row" style=" padding: 30px 0;">
@@ -54,7 +54,6 @@
               @else
               No Record Found
               @endif
-              
              </tbody>
            </table>            
     </div>

@@ -16,7 +16,7 @@
     
    
     <div class="table-responsive">
-        <table class="table table-borderless table-hover table-md table-lg">
+        <table class="table table-bordered table-hover table-md table-lg">
             <thead>
                  <tr>
                      <th class="text-center">No. </th>
@@ -35,11 +35,11 @@
                <tr>
                    <td class="text-center" style=" padding: 30px 0;">{{++$counter}}</td>
                    <td class="text-center" scope="row" style=" padding: 30px 0;">  
-                    <a  data-toggle="modal" href="#description" id="{{$row->detail}}" class="clicker btn-theme"> View </a>
+                    <p style=" text-align: justify; text-justify: inter-word;"> {{$row->detail}} </p>
                     </td>
                     <td class="text-center" style=" padding: 30px 0;">{{$row->created_at}}</td>
                 <td class="text-center" scope="row" style=" padding: 30px 0;">
-                  @if($service->price <= Auth::user()->credit)
+                  @if($service->price <= Auth::user()->credit || Session::has('ready'))
                   @if(Session::has('ready'))
                   <a href="{{asset('image/'.$row->file)}}" class="btn btn-success" download="Research Document"> Download </a>
                   @else

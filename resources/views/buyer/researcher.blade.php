@@ -12,7 +12,7 @@
     @endif 
         
     <div class="table-responsive">
-        <table class="table table-borderless table-hover table-md table-lg">
+        <table class="table table-bordered table-hover table-md table-lg">
             <thead>
                  <tr>
                      <th class="text-center">No. </th>
