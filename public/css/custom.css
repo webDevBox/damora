@@ -283,11 +283,11 @@ text-decoration: none;
     cursor: pointer;
 }
 div.chatbox{
-    height: 500px;
+    height: 800px;
     overflow-y: auto;
 }
 div.chatbox2{
-    height: 500px;
+    height: 800px;
     overflow-y: auto;
 }
 .imager{

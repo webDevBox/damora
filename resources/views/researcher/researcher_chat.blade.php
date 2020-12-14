@@ -1,10 +1,17 @@
 @extends('layout.researcher_app')
 
 @section('content')
+
+@php
+     $notify_admin=\App\chat::where('sender',$admin->id)->where('receiver',Auth::user()->id)->where('marker',0)->count();
+@endphp
     <div class="row mt-5">
         <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3 offset-lg-2 offset-md-2 bg-white boxer2 chatbox2">
             <a href="{{route('researcher_chat',array('id'=>$admin->id))}}" class="btn btn-primary d-block chater mt-2">
                 Chat With Admin
+                <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2 d-inline">
+                    @if($notify_admin > 0) <p class="dot">{{$notify_admin}}</p> @endif
+                 </div>
         </a>
         <hr class="hr2">
 
@@ -69,6 +76,7 @@
                         <img src="{{asset('image/'.$chat->file)}}" style="width: 150px; height:150px;">
                         @endif   
                         <p class="inline_para"> {{$chat->message}}</p> 
+                        <p class="text-right">{{ $chat->created_at }}</p>
                     </div>
                     @else
                     <div class="boxer mt-2 mb-2 make-it-slow other offset-md-4 offset-lg-4 offset-sm-3 offst-xs-3 col-md-8 col-lg-8 col-sm-9 col-xs-9">
@@ -76,6 +84,7 @@
                         <img src="{{asset('image/'.$chat->file)}}" style="width: 150px; height:150px;">
                         @endif 
                         <p class="inline_para"> {{$chat->message}}</p> 
+                        <p class="text-right">{{ $chat->created_at }}</p>
                     </div>
                 @endif
             </div>
