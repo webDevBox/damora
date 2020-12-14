@@ -62,28 +62,36 @@
         @if(Session::has('error'))
         <p class="offset-lg-4 offset-md-4 col-lg-4 col-md-4 col-sm-12 col-xs-12 alert {{ Session::get('alert-class', 'alert-danger') }}">{{ Session::get('error') }}</p>
         @endif 
-        <div class="row">
-            <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3 offset-md-3 offset-lg-3 offset-xs-3 offset-sm-3">
+       
             <form action="{{route('filter')}}" method="POST" >
                  @csrf
+                 <div class="row container">
+                    <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
                     <div class="form-group">
-                        <input type="text" name="researcher" style="width: 150px;" class="form-control" placeholder="Seller Name">
+                        <input type="text" name="researcher" class="form-control" placeholder="Seller Name">
                     </div>
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
                     <div class="form-group">
-                        <input type="number" name="start" style="width: 150px;" class="form-control" placeholder="Starting Price">
+                        <input type="number" name="start"  class="form-control" placeholder="Starting Price">
                     </div>
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
                     <div class="form-group">
-                        <input type="number" name="end" style="width: 150px;" class="form-control" placeholder="Ending Price">
+                        <input type="number" name="end" class="form-control" placeholder="Ending Price">
                     </div>
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
                     <div class="form-group">
                         <select name="asset" class="form-control">
                             <option selected disabled>  Asset Type </option>
                             @foreach ($asset as $item)
-                        <option value="{{$item->name}}">{{$item->name}}</option>
+                            <option value="{{$item->name}}">{{$item->name}}</option>
                             @endforeach
                         </select>
                     </div>
-                   
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
                     <div class="form-group">
                         <select name="market" class="form-control">
                             <option selected disabled>  Market Type </option>
@@ -92,14 +100,16 @@
                             @endforeach
                         </select>
                     </div>
+                    </div>
                
                 
             </div>
-            <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
+          <center>
                 <input type="submit" name="submit" value="Apply" class="btn btn-primary mt-100">
-            </div>
-        </form>
+          </center>
         </div>
+        </form>
+        
         
                 
             
