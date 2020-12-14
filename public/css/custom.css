@@ -187,6 +187,10 @@ input[type="search"]{
     border: 1px solid silver;
     width: 80%;
 }
+.hr4{
+    color: black;
+    width: 100%;
+}
 .side-link{
     text-decoration:none;
 }
@@ -420,4 +424,14 @@ div.chatbox2{
       
       .slider.round:before {
         border-radius: 50%;
+      }
+      .footList{
+          list-style: none;
+      }
+      .li_item{
+          margin-top: 10px;
+      }
+      .icon_foot{
+          border-radius: 50%;
+          background: gray;
       }

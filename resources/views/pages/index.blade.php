@@ -81,7 +81,10 @@
                         <input type="number" name="end" class="form-control" placeholder="Ending Price">
                     </div>
                     </div>
-                    <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                    <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4" >
+
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4" style="justify-content: center;">
                     <div class="form-group">
                         <select name="asset" class="form-control">
                             <option selected disabled>  Asset Type </option>
@@ -91,7 +94,7 @@
                         </select>
                     </div>
                     </div>
-                    <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                    <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4" style="justify-content: center;">
                     <div class="form-group">
                         <select name="market" class="form-control">
                             <option selected disabled>  Market Type </option>

@@ -13,7 +13,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-            <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
+<script src="https://use.fontawesome.com/4f7d4ab2f2.js"></script>           
+<link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
             <link rel="stylesheet" href="{{asset('css/custom.css')}}">
             <link rel="stylesheet" href="{{asset('css/owl.carousel.min.css')}}">
             <link rel="stylesheet" href="{{asset('css/slicknav.css')}}">
@@ -32,9 +33,9 @@
         <div class="preloader d-flex align-items-center justify-content-center">
             <div class="preloader-inner position-relative">
                 <div class="preloader-circle"></div>
-                <div class="preloader-img pere-text">
-                    <img src="{{asset('img/logo.png')}}" alt="">
-                </div>
+                    <div class="preloader-img pere-text">
+                        <img src="{{asset('img/logo.png')}}" alt="">
+                    </div>
             </div>
         </div>
     </div>
@@ -51,9 +52,9 @@
                             <div class="col-xl-2 col-lg-2 col-md-1">
                                 <div class="logo">
                                     <!-- logo-1 -->
-                                <a href="/" class="big-logo"><img src="{{asset('img/fulllogo.png')}}" alt=""></a>
+                                <a href="/" class="big-logo"><img src="{{asset('img/logo.png')}}" alt=""></a>
                                     <!-- logo-2 -->
-                                    <a href="/" class="small-logo"><img src="{{asset('img/fulllogo.png')}}" alt=""></a>
+                                    <a href="/" class="small-logo"><img src="{{asset('img/logo.png')}}" alt=""></a>
                                 </div>
                             </div>
                             <div class="col-xl-8 col-lg-8 col-md-8">
@@ -92,82 +93,53 @@
     @yield('content')
 
 
+<hr class="hr4">
+    <footer id="contact" style="margin-top:20px;">
+      <div class="bg-white container" style="margin-bottom:50px">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <img src="{{asset('img/fulllogo.png')}}" alt="" class="mx-auto d-block">
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="justify-content: center">
+                    <ul class="footList">
+                            <li>About</li>
+                            <li class="li_item">Contact</li>
+                            <li class="li_item">Feedback</li>
+                            <li class="li_item">Community</li>
+                    </ul>
+                </div>
 
-    <footer id="contact">
-      <!-- Footer Start-->
-      <div class="footer-main">
-              <div class="footer-area footer-padding">
-                  <div class="container">
-                      <div class="row  justify-content-between">
-                          <div class="col-lg-4 col-md-4 col-sm-8">
-                              <div class="single-footer-caption mb-30">
-                                  <!-- logo -->
-                                  <div class="footer-logo">
-                                      <a href="/"><img src="{{asset('img/logo.png')}}" alt=""></a>
-                                  </div>
-                                  <div class="footer-tittle">
-                                      <div class="footer-pera">
-                                          <p class="info1">Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore.</p>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="col-lg-2 col-md-4 col-sm-5">
-                              <div class="single-footer-caption mb-50">
-                                  <div class="footer-tittle">
-                                      <h4>Quick Links</h4>
-                                      <ul>
-                                          <li><a href="#about">About</a></li>
-                                          <li><a href="#service">Services</a></li>
-                                          <li><a href="#researcher">Researchers</a></li>
-                                      <li><a href="{{route('register')}}">Register</a></li>
-                                      </ul>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="col-lg-3 col-md-4 col-sm-7">
-                              <div class="single-footer-caption mb-50">
-                                  <div class="footer-tittle">
-                                      <h4>Contact</h4>
-                                      <div class="footer-pera">
-                                          <p class="info1">198 West 21th Street, Suite 721 New York,NY 10010</p>
-                                      </div>
-                                      <ul>
-                                          <li><a href="#">Phone: +95 (0) 123 456 789</a></li>
-                                          <li><a href="#">Cell: +95 (0) 123 456 789</a></li>
-                                      </ul>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="col-lg-3 col-md-6 col-sm-8">
-                              <div class="single-footer-caption mb-50">
-                                  <!-- Form -->
-                                  <div class="footer-form">
-                                      <div id="mc_embed_signup">
-                                          
-                                      </div>
-                                  </div>
-                                  <!-- Map -->
-                                  <div class="map-footer">
-                                      <img src="img/gallery/map-footer.png" alt="">
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <!-- Copy-Right -->
-                      <div class="row align-items-center">
-                          <div class="col-xl-12 ">
-                              <div class="footer-copy-right">
-                                  <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Damora Research
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
+                @php
+                    $serv_foot=\App\service::orderBy('id','desc')->limit(3)->get();
+                @endphp
+
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="justify-content: center">
+                    <ul class="footList">
+                            <li style="font-weight: bold">Services</li>
+                                @foreach ($serv_foot as $item)
+                                    <li class="li_item">{{$item->service}}</li>
+                                @endforeach
+                    </ul>
+                </div>
+
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="justify-content: center">
+                    <ul class="footList">
+                            <li>Terms of Service</li>
+                            <li class="li_item">Privacy Policy</li>
+                            <li class="li_item">Help & Support</li>
+                            <li class="li_item">Trust & Safety</li>
+                    </ul>
+                </div>
+
+            </div>
       </div>
-      <!-- Footer End-->
+
+      <hr class="hr4">
+
+      <div style="justify-content: center" class="container">
+        <div class="d-inline icon_foot"> <i class="fa fa-facebook" aria-hidden="true"></i></div>
+      </div>
+     
   </footer>
  
 <!-- JS here -->
