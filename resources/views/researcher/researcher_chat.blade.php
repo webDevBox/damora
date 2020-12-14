@@ -33,6 +33,7 @@
            $id=Auth::user()->id;
             $notify=\App\chat::where('sender',$buddy->id)->where('receiver',$id)
             ->where('marker',0)->count();
+            $pump=\App\chat::whereIn('sender',[$buddy->id,$id])->whereIn('receiver',[$id,$buddy->id])->orderBy('id','desc')->first();
         @endphp
         <ul id="chat_ul">
             <div @if(isset($user) && $buddy->id == $user->id) class="active" @endif id="active">
@@ -52,6 +53,9 @@
                         </div>
                         <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2">
                            @if($notify > 0) <p class="dot">{{$notify}}</p> @endif
+                        </div>
+                        <div class="text-secondary col-lg-9 col-md-9 col-sm-9 col-xs-9 offset-lg-3 offset-md-3 offset-sm-3 offset-xs-3">
+                            <p class="pump">@if(isset($pump)) {{$pump->message}} @endif</p>
                         </div>
                     </div>
                 </a>
@@ -120,4 +124,9 @@
         @endif
 
     </div>
+    <script>
+        var txt= $('.pump').text();
+        if(txt.length > 20)
+        $('.pump').text(txt.substring(0,18) + '.....');
+    </script>
 @endsection

@@ -34,8 +34,12 @@
             <h6 class="text-center text-secondary">Researchers</h6> 
         @foreach ($researcher as $user)
         @php
+            $pump=' ';
+            $id=Auth::user()->id;
             $notify=\App\chat::where('sender',$user->id)->where('receiver',$admin->id)
             ->where('marker',0)->count();
+            $pump=\App\chat::whereIn('sender',[$user->id,$id])->whereIn('receiver',[$id,$user->id])
+            ->orderBy('id','desc')->first();
         @endphp
         <ul id="chat_ul">
             <div @if(isset($actor) && $user->id == $actor->id) class="active" @endif id="active">
@@ -56,6 +60,9 @@
                         <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2">
                            @if($notify > 0) <p class="dot">{{$notify}}</p> @endif
                         </div>
+                        <div class="text-secondary col-lg-9 col-md-9 col-sm-9 col-xs-9 offset-lg-3 offset-md-3 offset-sm-3 offset-xs-3">
+                            <p class="pump">@if(isset($pump)) {{$pump->message}} @endif</p>
+                        </div>
                     </div>
                 </a>
                 <hr class="hr3">
@@ -70,8 +77,11 @@
 
             @foreach ($buyer as $user)
             @php
+                $id=Auth::user()->id;
                 $notify=\App\chat::where('sender',$user->id)->where('receiver',$admin->id)
                 ->where('marker',0)->count();
+                $pump=\App\chat::whereIn('sender',[$user->id,$id])->whereIn('receiver',[$id,$user->id])
+                ->orderBy('id','desc')->first();
             @endphp
             <ul id="chat_ul">
                 <div @if(isset($actor) && $user->id == $actor->id) class="active" @endif id="active">
@@ -91,6 +101,9 @@
                             </div>
                             <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2">
                                @if($notify > 0) <p class="dot">{{$notify}}</p> @endif
+                            </div>
+                            <div class="text-secondary col-lg-9 col-md-9 col-sm-9 col-xs-9 offset-lg-3 offset-md-3 offset-sm-3 offset-xs-3">
+                                <p class="dump">@if(isset($pump)) {{$pump->message}} @endif</p>
                             </div>
                         </div>
                     </a>
@@ -164,5 +177,14 @@
             $("#researcher").slideToggle();
         });
       </script>
-
+    <script>
+        var txt= $('.pump').text();
+        if(txt.length > 20)
+        $('.pump').text(txt.substring(0,18) + '.....');
+    </script>
+    <script>
+        var text= $('.dump').text();
+        if(text.length > 20)
+        $('.dump').text(text.substring(0,18) + '.....');
+    </script>
 @endsection
