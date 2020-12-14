@@ -18,7 +18,11 @@
       @endphp
         <div class="col-lg-5 col-md-5 col-sm-10 col-xs-10 bg-info m-3">
            <h2 class="text-center text-white">Researcher </h2>
+           @if($researcher->image != null)
             <img  class="profile-image d-block mx-auto img-fluid" src="{{ asset('image/'.$researcher->image) }}">
+            @else
+            <img src="{{asset('img/boy.png')}}" alt="" class="profile-image mx-auto d-block img-fluid">
+            @endif
             <h4 class="text-center text-white"> {{ $researcher->name }}</h4>
             <hr class="hro">
             <h2 class="text-center text-white">Signal File</h2>
@@ -36,7 +40,7 @@
    <div class="row" style="justify-content: center;">
     @foreach ($package as $row)
         <div class="col-lg-5 col-md-5 col-sm-10 col-xs-10 bg-info m-3">
-           <h2 class="d-block text-white">Price: {{ $row->price }} </h2>
+           <h2 class="d-block text-white">Price: ${{ $row->price }} </h2>
            <h2 class="d-block text-white">Credits: {{ $row->credit }} </h2>
         </div>
     @endforeach

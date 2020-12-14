@@ -41,7 +41,9 @@ class ResearcherController extends Controller
          $user=Auth::user();
          $chat_users=User::where('userRole',2)->orderBy('id','desc')->get();
          $admin=User::where('userRole',1)->first();
-        return view('researcher.dashboard')->with(array('admin'=>$admin,'chat_users'=>$chat_users,'user'=>$user));
+         $latest=transaction::where('researcher',$user->id)->orderBy('id','desc')->limit(4)->get();
+         $withdraw=withdraw::where('researcher',$user->id)->orderBy('id','desc')->limit(4)->get();
+        return view('researcher.dashboard')->with(array('withdraw'=>$withdraw,'latest'=>$latest,'admin'=>$admin,'chat_users'=>$chat_users,'user'=>$user));
     }
 
      //Researcher Profile
