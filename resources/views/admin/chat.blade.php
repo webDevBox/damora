@@ -112,6 +112,7 @@
                         <img src="{{asset('image/'.$chat->file)}}" style="width: 150px; height:150px;">
                         @endif  
                            <p class="inline_para"> {{$chat->message}}</p> 
+                           <p class="text-right">{{ $chat->created_at }}</p>
                     </div>
                     @else
                     <div class="boxer mt-2 mb-2 make-it-slow other offset-md-4 offset-lg-4 offset-sm-3 offst-xs-3 col-md-8 col-lg-8 col-sm-9 col-xs-9">
@@ -119,6 +120,7 @@
                         <img src="{{asset('image/'.$chat->file)}}" style="width: 150px; height:150px;">
                         @endif  
                         <p class="inline_para"> {{$chat->message}}</p> 
+                        <p class="text-right">{{ $chat->created_at }}</p>
                     </div>
                 @endif
             </div>
