@@ -41,9 +41,9 @@
                     $credit=$user->credit;
                 @endphp
                 @if($user->image != null)
-                <img src="{{asset('image/'.$user->image)}}" alt="" class="profile-image mx-auto d-block img-fluid">
+                <a href="{{route('buyer_profile')}}">  <img src="{{asset('image/'.$user->image)}}" alt="" class="profile-image mx-auto d-block img-fluid"> </a>
                 @else
-                <img src="{{asset('img/boy.png')}}" alt="" class="profile-image mx-auto d-block img-fluid">
+                <a href="{{route('buyer_profile')}}" class="text-left"><img src="{{asset('img/boy.png')}}" alt="" class="profile-image mx-auto d-block img-fluid"> </a>
                 @endif
             <h4 class="text-white text-center">{{ $user->name }} </h4>
             <br>

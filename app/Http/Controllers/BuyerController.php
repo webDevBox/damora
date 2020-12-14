@@ -38,7 +38,9 @@ class BuyerController extends Controller
          $user=Auth::user();
          $chat_users=User::where('userRole',3)->orderBy('id','desc')->get();
          $admin=User::where('userRole',1)->first();
-        return view('buyer.dashboard')->with(array('admin'=>$admin,'chat_users'=>$chat_users,'user'=>$user));
+         $latest=transaction::where('buyer',$user->id)->orderBy('id','desc')->limit(4)->get();
+         $package=package::orderBy('id','desc')->limit(4)->get();
+        return view('buyer.dashboard')->with(array('package'=>$package,'latest'=>$latest,'admin'=>$admin,'chat_users'=>$chat_users,'user'=>$user));
     }
 
      //Buyer Profile

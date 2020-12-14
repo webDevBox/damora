@@ -213,7 +213,6 @@ class authController extends Controller
              if(isset($request->user) && isset($request->password))
              {
                  $credentials = $request->only('user', 'password');
-        
                  if (Auth::attempt($credentials)) {
                      $user = Auth::user();
                      if($user->status == 1 && $user->userRole == 2)
