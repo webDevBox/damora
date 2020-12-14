@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 08, 2020 at 12:39 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.1
+-- Generation Time: Dec 14, 2020 at 02:19 PM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.4.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -84,12 +83,10 @@ CREATE TABLE `chats` (
 --
 
 INSERT INTO `chats` (`id`, `message`, `file`, `sender`, `receiver`, `marker`, `created_at`, `updated_at`) VALUES
-(1, 'hi', 'chat/VEQw9lKNIdEKXV56QP5mMW6kxJiZ1GyQ3vmrPrx8.jpeg', 11, 12, 1, '2020-10-30 00:43:15', '2020-10-30 04:46:10'),
-(2, 'I am goodfbe', NULL, 12, 11, 1, '2020-10-30 00:43:27', '2020-10-30 06:14:47'),
-(3, 'I am goodfbe', NULL, 12, 11, 1, '2020-10-30 00:51:38', '2020-10-30 06:14:47'),
-(4, NULL, 'chat/bOXlzWGRbAD560XgPvGy8TYXv4lFEZ9dNdwY9ZFd.jpeg', 12, 11, 1, '2020-10-30 00:51:43', '2020-10-30 06:14:47'),
-(5, 'Test Message', 'chat/MUMpLX0td07rg8O2en8lKM1UhT8iBMm9IGjHM3U8.jpeg', 12, 1, 1, '2020-10-30 00:53:40', '2020-10-30 01:05:04'),
-(6, 'hi', 'chat/xZZTFevxeR2OeoZlYP1T5hWuMQrSiyhnrDSyPOQx.jpeg', 1, 12, 1, '2020-10-30 01:05:04', '2020-10-30 04:46:16');
+(1, 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos id incidunt consequuntur? Aliquam sit similique, repudiandae corrupti eaque voluptatum placeat quidem natus aperiam, sequi earum ipsum, provident quos tempora cumque.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos id incidunt consequuntur? Aliquam sit similique, repudiandae corrupti eaque voluptatum placeat quidem natus aperiam, sequi earum ipsum, provident quos tempora cumque.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos id incidunt consequuntur? Aliquam sit similique, repudiandae corrupti eaque voluptatum placeat quidem natus aperiam, sequi earum ipsum, provident quos tempora cumque.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos id incidunt consequuntur? Aliquam sit similique, repudiandae corrupti eaque voluptatum placeat quidem natus aperiam, sequi earum ipsum, provident quos tempora cumque.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos id incidun', NULL, 1, 11, 1, '2020-12-14 06:18:02', '2020-12-14 06:18:09'),
+(2, 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos id incidunt consequuntur? Aliquam sit similique, repudiandae corrupti eaque voluptatum placeat quidem natus aperiam, sequi earum ipsum, provident quos tempora cumque.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos id incidunt consequuntur? Aliquam sit similique, repudiandae corrupti eaque voluptatum placeat quidem natus aperiam, sequi earum ipsum, provident quos tempora cumque.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos id incidunt consequuntur? Aliquam sit similique, repudiandae corrupti eaque voluptatum placeat quidem natus aperiam, sequi earum ipsum, provident quos tempora cumque.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos id incidunt consequuntur? Aliquam sit similique, repudiandae corrupti eaque voluptatum placeat quidem natus aperiam, sequi earum ipsum, provident quos tempora cumque.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos id incidun', NULL, 1, 12, 1, '2020-12-14 06:21:44', '2020-12-14 06:24:46'),
+(3, 'I am good', NULL, 1, 12, 1, '2020-12-14 06:23:49', '2020-12-14 06:24:46'),
+(4, '1', NULL, 12, 1, 1, '2020-12-14 06:24:46', '2020-12-14 06:24:58');
 
 -- --------------------------------------------------------
 
@@ -176,7 +173,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (18, '2020_10_03_182254_create_packages_table', 9),
 (19, '2020_10_30_041040_create_transactions_table', 10),
 (21, '2020_10_31_182148_add_transaction_type', 11),
-(22, '2020_10_31_185020_create_withdraws_table', 11);
+(22, '2020_10_31_185020_create_withdraws_table', 11),
+(23, '2020_12_14_044457_add_token', 12);
 
 -- --------------------------------------------------------
 
@@ -357,6 +355,7 @@ CREATE TABLE `users` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `credit` int(11) DEFAULT NULL,
+  `token` int(11) DEFAULT NULL,
   `userRole` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '1=admin, 2=buyer, 3=researcher',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -372,11 +371,12 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `user`, `email`, `password`, `credit`, `userRole`, `created_at`, `updated_at`, `status`, `image`, `stripe_id`, `card_brand`, `card_last_four`, `trial_ends_at`) VALUES
-(1, 'admin', 'admin', 'admin@gmail.com', '$2y$10$o6aGGuioBq4zs78TzEl3CujGDxa/F16n75eismKs4yKF4/NO.qaZi', NULL, '1', '2020-09-19 19:00:00', '2020-09-26 00:28:58', '1', 'user/BPOBM4IYJHZe5WdduSl74kMCbuUasLMnAqdf42qm.jpeg', NULL, NULL, NULL, NULL),
-(11, 'moeez moeez', 'moeez', 'moeez@gmail.com', '$2y$10$58za4CGFPqU4GnCYD4asEeRRLd/.tE5jrY1xdWQeI.wNzLP1P4f/C', 0, '3', '2020-10-29 21:23:51', '2020-10-31 14:28:05', '1', NULL, NULL, NULL, NULL, NULL),
-(12, 'saad', 'sado', 'saad@gmail.com', '$2y$10$PAH5s2Dsr2sbNSSBxn9pCeG7VMeXW/YivnH7BJbyZI1n0/FcOuJQq', 230, '2', '2020-10-29 21:24:11', '2020-10-31 14:28:02', '1', NULL, NULL, NULL, NULL, NULL),
-(13, 'Khubaib', 'khu', 'khubaib@gmail.com', '$2y$10$f./Mi/YFbf9ol92M7W8XUepuxbxpsN6IPKozB7Hv.WhxCLOaQFlry', 0, '3', '2020-10-31 14:39:20', '2020-10-31 14:39:20', '0', 'user/BPOBM4IYJHZe5WdduSl74kMCbuUasLMnAqdf42qm.jpeg', NULL, NULL, NULL, NULL);
+INSERT INTO `users` (`id`, `name`, `user`, `email`, `password`, `credit`, `token`, `userRole`, `created_at`, `updated_at`, `status`, `image`, `stripe_id`, `card_brand`, `card_last_four`, `trial_ends_at`) VALUES
+(1, 'admin', 'admin', 'admin@gmail.com', '$2y$10$o6aGGuioBq4zs78TzEl3CujGDxa/F16n75eismKs4yKF4/NO.qaZi', NULL, NULL, '1', '2020-09-19 19:00:00', '2020-09-26 00:28:58', '1', 'user/BPOBM4IYJHZe5WdduSl74kMCbuUasLMnAqdf42qm.jpeg', NULL, NULL, NULL, NULL),
+(11, 'moeez moeez', 'moeez', 'moeez@gmail.com', '$2y$10$58za4CGFPqU4GnCYD4asEeRRLd/.tE5jrY1xdWQeI.wNzLP1P4f/C', 0, NULL, '3', '2020-10-29 21:23:51', '2020-10-31 14:28:05', '1', 'user/BPOBM4IYJHZe5WdduSl74kMCbuUasLMnAqdf42qm.jpeg', NULL, NULL, NULL, NULL),
+(12, 'saad', 'sado', 'saad@gmail.com', '$2y$10$PAH5s2Dsr2sbNSSBxn9pCeG7VMeXW/YivnH7BJbyZI1n0/FcOuJQq', 230, NULL, '2', '2020-10-29 21:24:11', '2020-10-31 14:28:02', '1', NULL, NULL, NULL, NULL, NULL),
+(13, 'Khubaib', 'khu', 'khubaib@gmail.com', '$2y$10$f./Mi/YFbf9ol92M7W8XUepuxbxpsN6IPKozB7Hv.WhxCLOaQFlry', 0, NULL, '3', '2020-10-31 14:39:20', '2020-10-31 14:39:20', '0', 'user/BPOBM4IYJHZe5WdduSl74kMCbuUasLMnAqdf42qm.jpeg', NULL, NULL, NULL, NULL),
+(24, 'Moeez', 'mozo', 'muhammadmoeez64@gmail.com', '$2y$10$gDWMBrfEoFIuRMMLf2sYmOQi/VIQqrLskdilNxaeHbq.BslwvJfZK', 0, NULL, '2', '2020-12-14 00:24:21', '2020-12-14 00:24:40', '1', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -535,7 +535,7 @@ ALTER TABLE `assets`
 -- AUTO_INCREMENT for table `chats`
 --
 ALTER TABLE `chats`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `comments`
@@ -559,7 +559,7 @@ ALTER TABLE `markets`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `packages`
@@ -601,7 +601,7 @@ ALTER TABLE `transactions`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `withdraws`
