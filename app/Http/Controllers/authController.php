@@ -26,6 +26,7 @@ class authController extends Controller
             ]);
            
           $user=new User;
+          $rand=rand();
           $user->name=$request->name;
           $user->user=$request->user;
           $user->email=$request->email;
@@ -40,11 +41,13 @@ class authController extends Controller
           if($request->type == 2)
           {
               $status='Buyer';
-              $user->status=1;
+              $user->status=0;
               $user->credit=0;
+              $user->token=$rand;
+
 
               $mail=[
-                'body'=>'Your Acount need verification'
+                'body'=>'Your Verification Pin: '.$rand
             ];
             Mail::to($request->email)->send(new damoramail($mail));
           }
@@ -53,7 +56,7 @@ class authController extends Controller
           {
             if($request->type == 2)
             {
-                return redirect()->back()->with('success','Please Check Your Email');
+                return view('pages.verify')->with(array('success'=>'We Have Send You Verification Pin On Your Email','email'=>$request->email));
 
             }
             return redirect()->back()->with('success','Your Are Registered Successfully as '.$status);
@@ -126,6 +129,19 @@ class authController extends Controller
     {
       Auth::logout();
       return redirect('/login');
+    }
+  
+  
+    //Buyer Verification
+    public function verify(Request $request)
+    {
+        $this->validate($request,[
+            'pin'=>'required|numeric',
+            'email'=>'required'
+        ]);
+     $user=User::where('token',$request->pin)->where('email',$request->email)->first();
+     User::where('id',$user->id)->update(['token'=>null,'status'=>1]);
+     return redirect('/login')->with('success','Your Account Verified');
     }
 
 
@@ -211,10 +227,9 @@ class authController extends Controller
                          {
                              return redirect()->back()->with('error', 'Wrong Credantials');
                          }
-                         
                          if($user->status == 0)
                          {
-                             return redirect()->back()->with('error', 'Your Account is under review');
+                             return redirect()->back()->with('error', 'Please Verify Your Account');
                          }
                          else if($user->status == 2)
                          {
