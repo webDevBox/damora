@@ -65,26 +65,29 @@
        
             <form action="{{route('filter')}}" method="POST" >
                  @csrf
-                 <div class="row container">
-                    <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                 <div class="row">
+                    <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2"></div>
+                    <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2">
                     <div class="form-group">
                         <input type="text" name="researcher" class="form-control" placeholder="Seller Name">
                     </div>
                     </div>
-                    <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                    <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2">
                     <div class="form-group">
                         <input type="number" name="start"  class="form-control" placeholder="Starting Price">
                     </div>
                     </div>
-                    <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                    <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2">
                     <div class="form-group">
                         <input type="number" name="end" class="form-control" placeholder="Ending Price">
                     </div>
                     </div>
+                 </div>
+                 <div class="row">
                     <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4" >
 
                     </div>
-                    <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4" style="justify-content: center;">
+                    <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2" style="justify-content: center;">
                     <div class="form-group">
                         <select name="asset" class="form-control">
                             <option selected disabled>  Asset Type </option>
@@ -104,8 +107,6 @@
                         </select>
                     </div>
                     </div>
-               
-                
             </div>
           <center>
                 <input type="submit" name="submit" value="Apply" class="btn btn-primary mt-100">

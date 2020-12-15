@@ -52,9 +52,9 @@
                             <div class="col-xl-2 col-lg-2 col-md-1">
                                 <div class="logo">
                                     <!-- logo-1 -->
-                                <a href="/" class="big-logo"><img src="{{asset('img/logo.png')}}" alt=""></a>
+                                <a href="/" class="big-logo"><img class="img-fluid" src="{{asset('img/logo.png')}}" alt=""></a>
                                     <!-- logo-2 -->
-                                    <a href="/" class="small-logo"><img src="{{asset('img/logo.png')}}" alt=""></a>
+                                    <a href="/" class="small-logo"><img class="img-fluid" src="{{asset('img/logo.png')}}" alt=""></a>
                                 </div>
                             </div>
                             <div class="col-xl-8 col-lg-8 col-md-8">
@@ -93,15 +93,15 @@
     @yield('content')
 
 
-<hr class="hr4">
-    <footer id="contact" style="margin-top:20px;">
-      <div class="bg-white container" style="margin-bottom:50px">
+
+    <footer id="contact" class="bg-white" style="margin-top:20px;">
+      <div class="container" style="margin-bottom:50px">
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                <img src="{{asset('img/fulllogo.png')}}" alt="" class="mx-auto d-block">
+                <img src="{{asset('img/fulllogo.png')}}" alt="" class="mx-auto d-block img-fluid mt-5">
                 </div>
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="justify-content: center">
-                    <ul class="footList">
+                    <ul class="footList mt-3">
                             <li>About</li>
                             <li class="li_item">Contact</li>
                             <li class="li_item">Feedback</li>
@@ -114,7 +114,7 @@
                 @endphp
 
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="justify-content: center">
-                    <ul class="footList">
+                    <ul class="footList mt-3">
                             <li style="font-weight: bold">Services</li>
                                 @foreach ($serv_foot as $item)
                                     <li class="li_item">{{$item->service}}</li>
@@ -123,7 +123,7 @@
                 </div>
 
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="justify-content: center">
-                    <ul class="footList">
+                    <ul class="footList mt-3">
                             <li>Terms of Service</li>
                             <li class="li_item">Privacy Policy</li>
                             <li class="li_item">Help & Support</li>
