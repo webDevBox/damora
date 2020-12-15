@@ -11,6 +11,8 @@ use App\package;
 use App\service;
 use App\research;
 use App\transaction;
+use App\subscription;
+use Carbon\Carbon;
 class BuyerController extends Controller
 {
     protected $user;
@@ -300,6 +302,72 @@ class BuyerController extends Controller
         } catch ( \Exception $e ) {
             return redirect()->back()->with('error','Payment Unsuccessfull. Please Try Again');
         }
+     }
+
+     //Add Subscription List
+     public function subscribe($id)
+     {
+         if (Auth::check()) {
+             if($this->user->userRole != 2)
+             {
+              return redirect('/login');
+             }
+          }
+          else
+          {
+              return redirect('/login');
+          }
+          $check=subscription::where('service_id',$id)->where('subscriber',Auth::user()->id)->where('status',1)->count();
+          if($check > 0)
+          {
+            return redirect()->back()->with('error','You have Puchased This Service');
+          }
+          $subscribe=new subscription;
+          $subscribe->service_id=$id;
+          $subscribe->subscriber=Auth::user()->id;
+          $subscribe->save();
+          $service=service::find($id);
+          if($subscribe->save())
+          {
+          return redirect()->back()->with('success','You have Puchased Service for '.$service->duration.' Days');
+          }
+     }
+
+     //Subscription List
+     public function subs()
+     {
+         if (Auth::check()) {
+             if($this->user->userRole != 2)
+             {
+              return redirect('/login');
+             }
+          }
+          else
+          {
+              return redirect('/login');
+          }
+
+          $subscribe=subscription::where('subscriber',Auth::user()->id)->where('status',1)->get();
+          return view('buyer.subscription')->with(array('subscribe'=>$subscribe));
+     }
+     
+     
+     //Subscription List
+     public function subscribe_signal($id)
+     {
+         if (Auth::check()) {
+             if($this->user->userRole != 2)
+             {
+              return redirect('/login');
+             }
+          }
+          else
+          {
+              return redirect('/login');
+          }
+
+          $signals=research::where('service',$id)->get();
+          return view('buyer.freeSignal')->with(array('signals'=>$signals));
      }
 
 

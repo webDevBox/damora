@@ -173,9 +173,10 @@ class ResearcherController extends Controller
                 $this->validate($request,[
                  'service'=>'required',
                  'asset'=>'required',
-                 'duration'=>'required',
+                 'duration'=>'required|numeric',
                  'market'=>'required',
                  'price'=>'required|numeric',
+                 'sub_price'=>'required|numeric',
                  'description'=>'required'
                 ]);
                 $user=Auth::user();
@@ -184,6 +185,7 @@ class ResearcherController extends Controller
                 $service->market=$request->market;
                 $service->asset=$request->asset;
                 $service->price=$request->price;
+                $service->subscription=$request->sub_price;
                 $service->duration=$request->duration;
                 $service->description=$request->description;
                 if(isset($request->image))

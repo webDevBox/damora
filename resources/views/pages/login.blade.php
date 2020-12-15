@@ -43,7 +43,7 @@
         </div>
     </div>
 </div>
-
+<br><br><br><br><br><br><br><br>
 
 <script>
     $('#body').attr('class','register_body');

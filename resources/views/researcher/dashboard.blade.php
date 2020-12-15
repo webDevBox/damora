@@ -64,15 +64,15 @@
         <div class="col-lg-5 col-md-5 col-sm-10 col-xs-10 bg-info m-3">
            <h2 class="text-center text-white">Buyer </h2>
            @if($buyer->image != null)
-            <img  class="profile-image d-block mx-auto img-fluid" src="{{ asset('image/'.$buyer->image) }}">
+            <img  class="profile-image1 d-block mx-auto img-fluid" src="{{ asset('image/'.$buyer->image) }}">
             @else
-            <img src="{{asset('img/boy.png')}}" alt="" class="profile-image mx-auto d-block img-fluid">
+            <img src="{{asset('img/boy.png')}}" alt="" class="profile-image1 mx-auto d-block img-fluid">
             @endif
             <h4 class="text-center text-white"> {{ $buyer->name }}</h4>
             <hr class="hro">
             <h2 class="text-center text-white">Signal File</h2>
             <a href="{{ asset('image/'.$signal->file) }}" download="{{ $signal->detail }}">
-            <img class="profile-image d-block mx-auto img-fluid" src="{{ asset('image/file/file.png') }}">
+            <img class="profile-image2 d-block mx-auto img-fluid" src="{{ asset('image/file/file.png') }}">
             </a>
         </div>
     @endforeach

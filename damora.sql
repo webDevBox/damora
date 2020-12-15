@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 14, 2020 at 05:41 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.1
+-- Generation Time: Dec 15, 2020 at 09:07 AM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.4.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -172,7 +171,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (19, '2020_10_30_041040_create_transactions_table', 10),
 (21, '2020_10_31_182148_add_transaction_type', 11),
 (22, '2020_10_31_185020_create_withdraws_table', 11),
-(23, '2020_12_14_044457_add_token', 12);
+(23, '2020_12_14_044457_add_token', 12),
+(24, '2020_12_15_062811_add_subscription', 13),
+(25, '2020_12_15_064233_create_subscriptions_table', 14),
+(26, '2020_12_15_065708_add_subscription_end', 15),
+(27, '2020_12_15_070501_add_subscription_status', 16);
 
 -- --------------------------------------------------------
 
@@ -244,6 +247,7 @@ CREATE TABLE `services` (
   `market` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `asset` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `price` int(11) NOT NULL,
+  `subscription` int(11) NOT NULL,
   `duration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `file` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -256,8 +260,8 @@ CREATE TABLE `services` (
 -- Dumping data for table `services`
 --
 
-INSERT INTO `services` (`id`, `service`, `market`, `asset`, `price`, `duration`, `description`, `file`, `provider`, `created_at`, `updated_at`) VALUES
-(11, 'Market Research', 'cryptocurrency', 'cryptocurrency', 15, '5 days', '              Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci quis quam voluptate, doloremque quia fuga ducimus, nihil est animi in hic! Aut eligendi tenetur debitis obcaecati voluptas asperiores facilis fugiat.\r\n', 'services/s7nUQBqJHjUOpvWcgqrwDEEJ7U9pLc1tnDd88MJE.jpeg', 11, '2020-10-29 21:35:44', '2020-10-29 21:35:44');
+INSERT INTO `services` (`id`, `service`, `market`, `asset`, `price`, `subscription`, `duration`, `description`, `file`, `provider`, `created_at`, `updated_at`) VALUES
+(13, 'Market Research', 'cryptocurrency', 'cryptocurrency', 5, 10, '12', 'This is my first service', 'services/AU75gl4X1e9bNtwQVqb8v8VAZJTSRX08cY2mp763.jpeg', 11, '2020-12-15 01:30:51', '2020-12-15 01:30:51');
 
 -- --------------------------------------------------------
 
@@ -281,34 +285,20 @@ CREATE TABLE `sessions` (
 --
 
 CREATE TABLE `subscriptions` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `stripe_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `stripe_status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `stripe_plan` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `quantity` int(11) DEFAULT NULL,
-  `trial_ends_at` timestamp NULL DEFAULT NULL,
-  `ends_at` timestamp NULL DEFAULT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
+  `service_id` int(11) NOT NULL,
+  `subscriber` int(11) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT 1 COMMENT '0=UnSub , 1=Subscribe',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `subscription_items`
+-- Dumping data for table `subscriptions`
 --
 
-CREATE TABLE `subscription_items` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `subscription_id` bigint(20) UNSIGNED NOT NULL,
-  `stripe_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `stripe_plan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `quantity` int(11) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+INSERT INTO `subscriptions` (`id`, `service_id`, `subscriber`, `status`, `created_at`, `updated_at`) VALUES
+(1, 13, 12, 1, '2020-12-15 01:54:17', '2020-12-15 01:54:17');
 
 -- --------------------------------------------------------
 
@@ -485,16 +475,7 @@ ALTER TABLE `sessions`
 -- Indexes for table `subscriptions`
 --
 ALTER TABLE `subscriptions`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `subscriptions_user_id_stripe_status_index` (`user_id`,`stripe_status`);
-
---
--- Indexes for table `subscription_items`
---
-ALTER TABLE `subscription_items`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `subscription_items_subscription_id_stripe_plan_unique` (`subscription_id`,`stripe_plan`),
-  ADD KEY `subscription_items_stripe_id_index` (`stripe_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `transactions`
@@ -561,7 +542,7 @@ ALTER TABLE `markets`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `packages`
@@ -579,19 +560,13 @@ ALTER TABLE `research`
 -- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `subscriptions`
 --
 ALTER TABLE `subscriptions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `subscription_items`
---
-ALTER TABLE `subscription_items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `transactions`

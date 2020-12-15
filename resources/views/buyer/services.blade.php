@@ -17,12 +17,12 @@
                  <tr>
                      <th class="text-center">No. </th>
                      <th class="text-center">Image</th>
+                     <th class="text-center">Description</th>
                      <th class="text-center">Name</th>
                      <th class="text-center">Market</th>
                      <th class="text-center">Asset</th>
-                     <th class="text-center">Credits</th>
+                     <th class="text-center">Signal Credits</th>
                      <th class="text-center">Duration</th>
-                     <th class="text-center">description</th>
                      <th class="text-center">Action</th>
                  </tr>
             </thead>
@@ -36,15 +36,16 @@
                    <td class="text-center" style=" padding: 30px 0;">{{++$counter}}</td>
                <td class="text-center" scope="row"> <img src="{{asset('image/'.$row->file)}}"  class="profile-image mx-auto d-block img-fluid">
                </td>
+               <td class="text-center" scope="row" style="width:20%; padding: 30px 0;">  
+                <div style="text-align: justify; text-justify: inter-word;" class="pump d-inline">
+                  {{$row->description}} <a class="more text-primary"  style="cursor: pointer; display:none;"> more..</a>
+                </div>
+              </td>
                <td class="text-center" style=" padding: 30px 0;" scope="row">{{$row->service}}</td>
                 <td class="text-center" scope="row" style=" padding: 30px 0;">{{$row->market}}</td>
                 <td class="text-center" scope="row" style=" padding: 30px 0;">{{$row->asset}}</td>
-                <td class="text-center" scope="row" style=" padding: 30px 0;">{{$row->price}}</td>
+                <td class="text-center" scope="row" style=" padding: 30px 0;">${{$row->price}}</td>
                 <td class="text-center" scope="row" style=" padding: 30px 0;">{{$row->duration}}</td>
-                <td class="text-center" scope="row" style=" padding: 30px 0;">  
-                 <p style=" text-align: justify; text-justify: inter-word;"> {{$row->description}} </p>
-                </td>
-
                 <td class="text-center" scope="row" style=" padding: 30px 0;">
                    <a href="{{route('signal_list',array('service'=>$row->id,'researcher'=>$researcher->id))}}" class="btn-theme-border"> Signals </a> 
                 </td>
@@ -80,5 +81,20 @@
         var text=$(this).attr('id');
         $('#shower').html(text);
     });
+</script>
+
+<script>
+  var txt= $('.pump').text();
+       if(txt.length > 50)
+       {
+       $(this).text(txt.substring(0,45));
+       $('.more').attr('style','cursor: pointer; display:inline');
+       }
+
+       $('.more').click(function()
+       {     
+        $(this).attr('style','display:inline; color:black;');                                     
+         $(this).text(txt);
+       });
 </script>
 @endsection

@@ -79,6 +79,10 @@ Route::post('/add_asset','adminController@add_asset')->name('add_asset');
 Route::get('/del_asset/{id}','adminController@del_asset')->name('del_asset');
 Route::get('/admin_service','adminController@admin_service')->name('admin_service');
 Route::post('/add_service','adminController@add_service')->name('add_service');
+Route::get('/subscribe/{id}','BuyerController@subscribe')->name('subscribe');
+Route::get('/subscribe_signal/{id}','BuyerController@subscribe_signal')->name('subscribe_signal');
+Route::get('/subs','BuyerController@subs')->name('subs');
+
 Route::get('/del_service/{id}','adminController@del_service')->name('del_service');
 Route::get('/market','adminController@market')->name('market');
 Route::post('/add_market','adminController@add_market')->name('add_market');

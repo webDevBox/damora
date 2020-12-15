@@ -24,13 +24,14 @@
     @if ($errors->has('description')) <p style="color:red;">{{ $errors->first('description') }}</p> @endif 
     @if ($errors->has('image')) <p style="color:red;">{{ $errors->first('image') }}</p> @endif 
 
-    <table class="table table-borderless table-hover table-md table-lg mt-5">
+    <table class="table table-bordered table-hover table-md table-lg mt-5">
        <thead>
             <tr>
                 <th class="text-center">Service</th>
                 <th class="text-center">market</th>
                 <th class="text-center">asset</th>
-                <th class="text-center">Credits</th>
+                <th class="text-center">Signal</th>
+                <th class="text-center">Subscription</th>
                 <th class="text-center">duration</th>
                 <th class="text-center">Image</th>
                 <th class="text-center">Added</th>
@@ -44,7 +45,8 @@
           <td class="text-center" scope="row">{{$row->service}}</td>
           <td class="text-center" scope="row">{{$row->market}}</td>
           <td class="text-center" scope="row">{{$row->asset}}</td>
-          <td class="text-center" scope="row">{{$row->price}}</td>
+          <td class="text-center" scope="row">${{$row->price}}</td>
+          <td class="text-center" scope="row">${{$row->subscription}}</td>
           <td class="text-center" scope="row">{{$row->duration}}</td>
           <td class="text-center" scope="row">
             <img src="{{asset('image/'.$row->file)}}" class="profile-image mx-auto d-block img-fluid" id="db_img" alt="">
@@ -95,7 +97,7 @@
 
                   <br>
 
-                  <input type="text" name="duration" placeholder="Duration" class="form-control">
+                  <input type="number" name="duration" placeholder="Duration" class="form-control">
                 </div>
 
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -108,7 +110,9 @@
 
                   <br>
 
-                  <input type="number" name="price" placeholder="Price" class="form-control">
+                  <input type="number" name="price" placeholder="Per Signal Price" class="form-control">
+                  <br>    
+                  <input type="number" name="sub_price" placeholder="Service Subscription Price" class="form-control">
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mt-5">
                   <textarea name="description" id="" rows="5" class="form-control" placeholder="Enter Description" required></textarea>

@@ -61,6 +61,11 @@
         <a href="{{route('services')}}" class="text-left">  <h5 style="font-weight: normal" class=" nav-side"> 
             <i class="fa fa-server" aria-hidden="true"></i> Services </h5>
             </a>
+       
+       
+            <a href="{{route('subs')}}" class="text-left">  <h5 style="font-weight: normal" class=" nav-side"> 
+            <i class="fa fa-calendar-minus-o" aria-hidden="true"></i> Subscrption </h5>
+            </a>
             
             <a href="{{route('chat_page')}}" class="text-left">  <h5 style="font-weight: normal" class=" nav-side"> 
                 <i class="fa fa-comment" aria-hidden="true"></i> Chat

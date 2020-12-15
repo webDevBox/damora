@@ -1,8 +1,11 @@
+<?php
+use Carbon\Carbon;
+?>
 @extends('layout.buyer_app')
 
 @section('content')
 <div class="bg-white boxer container mt-3">
-<h3 class="h3 text-center mt-5">Services List</h3>
+<h3 class="h3 text-center mt-5">Your Subscriptions</h3>
     @if(Session::has('success'))
     <p class="offset-lg-4 offset-md-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 alert {{ Session::get('alert-class', 'alert-success') }}">
     {{ Session::get('success') }} </p>
@@ -17,46 +20,35 @@
                  <tr>
                      <th class="text-center">No. </th>
                      <th class="text-center">Image</th>
-                     <th class="text-center">Description</th>
                      <th class="text-center">Provider</th>
-                     <th class="text-center">Name</th>
-                     <th class="text-center">Market</th>
-                     <th class="text-center">Asset</th>
-                     <th class="text-center">Subscription</th>
-                     <th class="text-center">Duration</th>
+                     <th class="text-center">Service</th>
+                     <th class="text-center">Time Left</th>
                      <th class="text-center">Action</th>
                  </tr>
             </thead>
              <tbody>
-                 @if(count($services) > 0)
+                 @if(count($subscribe) > 0)
                  @php
                  $counter = 0;
              @endphp
-                 @foreach ($services as $row)
+                 @foreach ($subscribe as $row)
                <tr>
                    @php
-                       $provider=$row->provider;
-                       $user=\App\User::find($provider);
+                       $service=\App\service::find($row->service_id);
+                       $provider=\App\User::find($service->provider);
+                    
+                       $sub_time=$row->created_at;
+                       $end_date=Carbon::parse($row->created_at)->addDays($service->duration);
+                       $left=now()->diffInDays($end_date);
+                      
                    @endphp
                    <td class="text-center" style=" padding: 30px 0;">{{++$counter}}</td>
-               <td class="text-center" scope="row"> <img src="{{asset('image/'.$row->file)}}"  class="profile-image mx-auto d-block img-fluid">
-               </td>
-               <td class="" scope="row" style="width:20%; padding: 30px 0;">  
-                <div style="text-align: justify; text-justify: inter-word;" class="pump d-inline">
-                  {{$row->description}} <a class="more text-primary" style="cursor: pointer; display:none;"> more..</a>
-                </div>
-                
-              </td>
-               <td class="text-center" style=" padding: 30px 0;" scope="row">{{$user->name}}</td>
-               <td class="text-center" style=" padding: 30px 0;" scope="row">{{$row->service}}</td>
-                <td class="text-center" scope="row" style=" padding: 30px 0;">{{$row->market}}</td>
-                <td class="text-center" scope="row" style=" padding: 30px 0;">{{$row->asset}}</td>
-                <td class="text-center" scope="row" style=" padding: 30px 0;">${{$row->subscription}}</td>
-                <td class="text-center" scope="row" style=" padding: 30px 0;">{{$row->duration}}</td>
-               
-
+               <td class="text-center" scope="row"> <img src="{{asset('image/'.$service->file)}}"  class="profile-image mx-auto d-block img-fluid"></td>
+               <td class="text-center" style=" padding: 30px 0;" scope="row">{{$provider->name}}</td>
+               <td class="text-center" style=" padding: 30px 0;" scope="row">{{$service->service}}</td>
+                <td class="text-center" scope="row" style=" padding: 30px 0;"> {{ $left }} Days </td>
                 <td class="text-center" scope="row" style=" padding: 30px 0;">
-                   <a href="{{route('subscribe',array('id'=>$row->id))}}" class="btn-theme-border"> Buy </a> 
+                   <a href="{{route('subscribe_signal',array('id'=>$service->id))}}" class="btn-theme-border"> Signals </a> 
                 </td>
                         
                </tr>
