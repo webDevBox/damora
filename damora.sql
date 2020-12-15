@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 15, 2020 at 09:07 AM
+-- Generation Time: Dec 15, 2020 at 11:51 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.9
 
@@ -83,7 +83,8 @@ CREATE TABLE `chats` (
 --
 
 INSERT INTO `chats` (`id`, `message`, `file`, `sender`, `receiver`, `marker`, `created_at`, `updated_at`) VALUES
-(1, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem id obcaecati autem recusandae aut laudantium quo qui doloribus. Nihil et voluptatem possimus autem ratione nesciunt vitae id quos aperiam. Aliquid!Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem id obcaecati autem recusandae aut laudantium quo qui doloribus. Nihil et voluptatem possimus autem ratione nesciunt vitae id quos aperiam. Aliquid!Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem id obcaecati autem recusandae aut laudantium quo qui doloribus. Nihil et voluptatem possimus autem ratione nesciunt vitae id quos aperiam. Aliquid!Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem id obcaecati autem recusandae aut laudantium quo qui doloribus. Nihil et voluptatem possimus autem ratione nesciunt vitae id quos aperiam. Aliquid!Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem id obcaecati autem recusandae aut laudantium quo qui doloribus. Nihil et voluptatem possimus autem ratione nesciunt', NULL, 1, 13, 0, '2020-12-14 11:03:33', '2020-12-14 11:03:33');
+(1, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem id obcaecati autem recusandae aut laudantium quo qui doloribus. Nihil et voluptatem possimus autem ratione nesciunt vitae id quos aperiam. Aliquid!Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem id obcaecati autem recusandae aut laudantium quo qui doloribus. Nihil et voluptatem possimus autem ratione nesciunt vitae id quos aperiam. Aliquid!Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem id obcaecati autem recusandae aut laudantium quo qui doloribus. Nihil et voluptatem possimus autem ratione nesciunt vitae id quos aperiam. Aliquid!Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem id obcaecati autem recusandae aut laudantium quo qui doloribus. Nihil et voluptatem possimus autem ratione nesciunt vitae id quos aperiam. Aliquid!Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem id obcaecati autem recusandae aut laudantium quo qui doloribus. Nihil et voluptatem possimus autem ratione nesciunt', NULL, 1, 13, 0, '2020-12-14 11:03:33', '2020-12-14 11:03:33'),
+(2, 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos id incidunt consequuntur? Aliquam sit similique, repudiandae corrupti eaque voluptatum placeat quidem natus aperiam, sequi earum ipsum, provident quos tempora cumque.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos id incidunt consequuntur? Aliquam sit similique, repudiandae corrupti eaque voluptatum placeat quidem natus aperiam, sequi earum ipsum, provident quos tempora cumque.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos id incidunt consequuntur? Aliquam sit similique, repudiandae corrupti eaque voluptatum placeat quidem natus aperiam, sequi earum ipsum, provident quos tempora cumque.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos id incidunt consequuntur? Aliquam sit similique, repudiandae corrupti eaque voluptatum placeat quidem natus aperiam, sequi earum ipsum, provident quos tempora cumque.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos id incidun', NULL, 12, 11, 0, '2020-12-15 05:42:06', '2020-12-15 05:42:06');
 
 -- --------------------------------------------------------
 
@@ -233,7 +234,7 @@ CREATE TABLE `research` (
 --
 
 INSERT INTO `research` (`id`, `researcher`, `service`, `file`, `detail`, `created_at`, `updated_at`) VALUES
-(1, 11, 11, 'file/QgOPITeJavM1gKYEWB5lTONFO6AZDyXlxr5GmTKn.pdf', 'Final Destination', '2020-10-29 21:38:51', '2020-10-29 21:39:13');
+(1, 11, 13, 'file/QgOPITeJavM1gKYEWB5lTONFO6AZDyXlxr5GmTKn.pdf', 'Final Destination', '2020-10-29 21:38:51', '2020-10-29 21:39:13');
 
 -- --------------------------------------------------------
 
@@ -261,7 +262,7 @@ CREATE TABLE `services` (
 --
 
 INSERT INTO `services` (`id`, `service`, `market`, `asset`, `price`, `subscription`, `duration`, `description`, `file`, `provider`, `created_at`, `updated_at`) VALUES
-(13, 'Market Research', 'cryptocurrency', 'cryptocurrency', 5, 10, '12', 'This is my first service', 'services/AU75gl4X1e9bNtwQVqb8v8VAZJTSRX08cY2mp763.jpeg', 11, '2020-12-15 01:30:51', '2020-12-15 01:30:51');
+(13, 'Market Research', 'cryptocurrency', 'cryptocurrency', 5, 10, '2', 'This is my first service', 'services/AU75gl4X1e9bNtwQVqb8v8VAZJTSRX08cY2mp763.jpeg', 11, '2020-12-15 01:30:51', '2020-12-15 01:30:51');
 
 -- --------------------------------------------------------
 
@@ -298,7 +299,8 @@ CREATE TABLE `subscriptions` (
 --
 
 INSERT INTO `subscriptions` (`id`, `service_id`, `subscriber`, `status`, `created_at`, `updated_at`) VALUES
-(1, 13, 12, 1, '2020-12-15 01:54:17', '2020-12-15 01:54:17');
+(1, 13, 12, 0, '2020-12-12 10:38:09', '2020-12-15 05:39:30'),
+(2, 13, 12, 1, '2020-12-15 05:39:47', '2020-12-15 05:39:47');
 
 -- --------------------------------------------------------
 
@@ -366,7 +368,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `user`, `email`, `password`, `credit`, `token`, `userRole`, `created_at`, `updated_at`, `status`, `image`, `stripe_id`, `card_brand`, `card_last_four`, `trial_ends_at`) VALUES
 (1, 'admin', 'admin', 'admin@gmail.com', '$2y$10$o6aGGuioBq4zs78TzEl3CujGDxa/F16n75eismKs4yKF4/NO.qaZi', NULL, NULL, '1', '2020-09-19 19:00:00', '2020-09-26 00:28:58', '1', 'user/BPOBM4IYJHZe5WdduSl74kMCbuUasLMnAqdf42qm.jpeg', NULL, NULL, NULL, NULL),
 (11, 'moeez moeez', 'moeez', 'moeez@gmail.com', '$2y$10$58za4CGFPqU4GnCYD4asEeRRLd/.tE5jrY1xdWQeI.wNzLP1P4f/C', 48, NULL, '3', '2020-10-29 21:23:51', '2020-12-14 10:11:19', '1', 'user/BPOBM4IYJHZe5WdduSl74kMCbuUasLMnAqdf42qm.jpeg', NULL, NULL, NULL, NULL),
-(12, 'saad', 'sado', 'saad@gmail.com', '$2y$10$PAH5s2Dsr2sbNSSBxn9pCeG7VMeXW/YivnH7BJbyZI1n0/FcOuJQq', 230, NULL, '2', '2020-10-29 21:24:11', '2020-10-31 14:28:02', '1', NULL, NULL, NULL, NULL, NULL),
+(12, 'saad', 'sado', 'saad@gmail.com', '$2y$10$PAH5s2Dsr2sbNSSBxn9pCeG7VMeXW/YivnH7BJbyZI1n0/FcOuJQq', 190, NULL, '2', '2020-10-29 21:24:11', '2020-12-15 05:39:47', '1', NULL, NULL, NULL, NULL, NULL),
 (13, 'Khubaib', 'khu', 'khubaib@gmail.com', '$2y$10$f./Mi/YFbf9ol92M7W8XUepuxbxpsN6IPKozB7Hv.WhxCLOaQFlry', 0, NULL, '3', '2020-10-31 14:39:20', '2020-10-31 14:39:20', '0', 'user/BPOBM4IYJHZe5WdduSl74kMCbuUasLMnAqdf42qm.jpeg', NULL, NULL, NULL, NULL),
 (26, 'Allied', 'ayees', 'ayeshatayyab66@gmail.com', '$2y$10$1KQgNNwZgbT2wo59JWrG9uVY9S0zRHod5gvRNb7d/UhqN9vlJohGC', 5, NULL, '2', '2020-12-14 09:44:47', '2020-12-14 10:11:19', '1', NULL, NULL, NULL, NULL, NULL);
 
@@ -518,7 +520,7 @@ ALTER TABLE `assets`
 -- AUTO_INCREMENT for table `chats`
 --
 ALTER TABLE `chats`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `comments`
@@ -566,7 +568,7 @@ ALTER TABLE `services`
 -- AUTO_INCREMENT for table `subscriptions`
 --
 ALTER TABLE `subscriptions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `transactions`

@@ -84,7 +84,7 @@
                     </div>
                  </div>
                  <div class="row">
-                    <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4" >
+                    <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2" >
 
                     </div>
                     <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2" style="justify-content: center;">
@@ -97,7 +97,7 @@
                         </select>
                     </div>
                     </div>
-                    <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4" style="justify-content: center;">
+                    <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2" style="justify-content: center;">
                     <div class="form-group">
                         <select name="market" class="form-control">
                             <option selected disabled>  Market Type </option>
@@ -107,10 +107,10 @@
                         </select>
                     </div>
                     </div>
+                    <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2" style="justify-content: center;">
+                        <input type="submit" name="submit" value="Apply" class="btn btn-primary">
+                    </div>
             </div>
-          <center>
-                <input type="submit" name="submit" value="Apply" class="btn btn-primary mt-100">
-          </center>
         </div>
         </form>
         
@@ -133,13 +133,15 @@
                     </div>
                 </div>
                 <div class="row">
+                    @foreach($services as $key)
+                        
                     <div class="col-xl-4 col-lg-4 col-md-6">
                         <div class="single-service-cap mb-30">
                             <div class="service-img">
-                                <img src="img/service/servicess1.png" alt="">
+                                <img src="{{ asset('image/'.$key->file) }}" alt="">
                             </div>
                             <div class="service-cap">
-                                <h4><a href="services_details.html">Engineering techniques & implementation</a></h4>
+                                <h4>{{ $key->description }}</h4>
                                
                             </div>
                             <div class="service-icon">
@@ -147,34 +149,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6">
-                        <div class="single-service-cap mb-30">
-                            <div class="service-img">
-                                <img src="img/service/servicess2.png" alt="">
-                            </div>
-                            <div class="service-cap">
-                                <h4><a href="services_details.html">Engineering techniques & implementation</a></h4>
-                               
-                            </div>
-                            <div class="service-icon">
-                                <img src="img/icon/services_icon1.png" alt="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6">
-                        <div class="single-service-cap mb-30">
-                            <div class="service-img">
-                                <img src="img/service/servicess3.png" alt="">
-                            </div>
-                            <div class="service-cap">
-                                <h4><a href="services_details.htmlaa">Engineering techniques &  implementation</a></h4>
-                               
-                            </div>
-                            <div class="service-icon">
-                                <img src="img/icon/services_icon1.png" alt="">
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
+                    
                 </div>
             </div>
         </div>

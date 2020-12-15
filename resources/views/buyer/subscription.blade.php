@@ -46,7 +46,7 @@ use Carbon\Carbon;
                <td class="text-center" scope="row"> <img src="{{asset('image/'.$service->file)}}"  class="profile-image mx-auto d-block img-fluid"></td>
                <td class="text-center" style=" padding: 30px 0;" scope="row">{{$provider->name}}</td>
                <td class="text-center" style=" padding: 30px 0;" scope="row">{{$service->service}}</td>
-                <td class="text-center" scope="row" style=" padding: 30px 0;"> {{ $left }} Days </td>
+                <td class="text-center" scope="row" style=" padding: 30px 0;"> {{ $left + 1 }} Days </td>
                 <td class="text-center" scope="row" style=" padding: 30px 0;">
                    <a href="{{route('subscribe_signal',array('id'=>$service->id))}}" class="btn-theme-border"> Signals </a> 
                 </td>

@@ -23,7 +23,8 @@ class pagesController extends Controller
         $signal=research::count();
         $asset=asset::get();
         $market=market::get();
-        return view('pages.index')->with(array('users'=>$users,'signal'=>$signal,'researcher'=>$researcher,'sale'=>$sale,'asset'=>$asset,'market'=>$market));
+        $services=service::orderBy('id','desc')->limit(3)->get();
+        return view('pages.index')->with(array('services'=>$services,'users'=>$users,'signal'=>$signal,'researcher'=>$researcher,'sale'=>$sale,'asset'=>$asset,'market'=>$market));
     }
 
     //redirect to register page

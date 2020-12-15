@@ -329,7 +329,11 @@ class BuyerController extends Controller
           $service=service::find($id);
           if($subscribe->save())
           {
-          return redirect()->back()->with('success','You have Puchased Service for '.$service->duration.' Days');
+            $price=$service->subscription;
+            $credit=Auth::user()->credit;
+            $new=$credit-$price;
+            User::where('id',Auth::user()->id)->update(['credit'=>$new]);
+            return redirect()->back()->with('success','You have Puchased Service for '.$service->duration.' Days');
           }
      }
 
@@ -345,6 +349,19 @@ class BuyerController extends Controller
           else
           {
               return redirect('/login');
+          }
+
+          $unsub=subscription::where('subscriber',Auth::user()->id)->where('status',1)->get();
+          foreach($unsub as $row)
+          {
+            $service=service::find($row->service_id);
+            $sub_time=$row->created_at;
+            $end_date=Carbon::parse($sub_time)->addDays($service->duration);
+            $left=now()->diffInDays($end_date);
+            if(now()->greaterThan($end_date))
+            {
+                subscription::where('service_id',$row->service_id)->where('subscriber',Auth::user()->id)->where('status',1)->update(['status'=>0]);
+            }
           }
 
           $subscribe=subscription::where('subscriber',Auth::user()->id)->where('status',1)->get();

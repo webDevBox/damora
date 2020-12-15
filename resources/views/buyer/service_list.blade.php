@@ -56,7 +56,11 @@
                
 
                 <td class="text-center" scope="row" style=" padding: 30px 0;">
-                   <a href="{{route('subscribe',array('id'=>$row->id))}}" class="btn-theme-border"> Buy </a> 
+                  @if(Auth::user()->credit >= $row->subscription)
+                   <a href="{{route('subscribe',array('id'=>$row->id))}}" class="btn-theme-border"> Buy </a>
+                   @else
+                   <a href="{{route('add_credit')}}" class="btn-theme-border">Low Credits</a>
+                   @endif
                 </td>
                         
                </tr>
