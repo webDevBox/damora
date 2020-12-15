@@ -333,6 +333,13 @@ class BuyerController extends Controller
             $credit=Auth::user()->credit;
             $new=$credit-$price;
             User::where('id',Auth::user()->id)->update(['credit'=>$new]);
+
+            $provider=$service->provider;
+            $researcher=User::find($provider);
+            $balance=$researcher->credit;
+            $new_bal=$balance+$price;
+            User::where('id',$provider)->update(['credit'=>$new_bal]);
+
             return redirect()->back()->with('success','You have Puchased Service for '.$service->duration.' Days');
           }
      }
