@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 21, 2020 at 05:37 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.1
+-- Generation Time: Dec 23, 2020 at 07:05 AM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.4.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -372,7 +371,8 @@ INSERT INTO `users` (`id`, `name`, `user`, `email`, `password`, `credit`, `token
 (12, 'saad', 'sado', 'saad@gmail.com', '$2y$10$PAH5s2Dsr2sbNSSBxn9pCeG7VMeXW/YivnH7BJbyZI1n0/FcOuJQq', 170, NULL, '2', '2020-10-29 21:24:11', '2020-12-15 10:22:34', '1', NULL, NULL, NULL, NULL, NULL),
 (13, 'Khubaib', 'khu', 'khubaib@gmail.com', '$2y$10$f./Mi/YFbf9ol92M7W8XUepuxbxpsN6IPKozB7Hv.WhxCLOaQFlry', 0, NULL, '3', '2020-10-31 14:39:20', '2020-10-31 14:39:20', '0', 'user/BPOBM4IYJHZe5WdduSl74kMCbuUasLMnAqdf42qm.jpeg', NULL, NULL, NULL, NULL),
 (26, 'Allied', 'ayees', 'ayeshatayyab66@gmail.com', '$2y$10$1KQgNNwZgbT2wo59JWrG9uVY9S0zRHod5gvRNb7d/UhqN9vlJohGC', 5, NULL, '2', '2020-12-14 09:44:47', '2020-12-14 10:11:19', '1', NULL, NULL, NULL, NULL, NULL),
-(28, 'aatral', 'aatral', 'aatrala@gmail.com', '$2y$10$q/OlZWV84QG/pS/rganItO7zuMKQ/ODOxivxqIYL9NtcCPkmtYJ3u', 0, NULL, '2', '2020-12-15 10:16:24', '2020-12-15 10:16:57', '1', NULL, NULL, NULL, NULL, NULL);
+(28, 'aatral', 'aatral', 'aatrala@gmail.com', '$2y$10$q/OlZWV84QG/pS/rganItO7zuMKQ/ODOxivxqIYL9NtcCPkmtYJ3u', 0, NULL, '2', '2020-12-15 10:16:24', '2020-12-15 10:16:57', '1', NULL, NULL, NULL, NULL, NULL),
+(31, 'Moeez', 'ngf', 'moeez1@gmail.com', '$2y$10$r3rE8nsOOgStq7kp6p/DNOX3i7FgEIXwfy8XaMBjCprEH3cmKL3nC', 0, NULL, '2', '2020-12-23 01:03:09', '2020-12-23 01:03:21', '1', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -582,7 +582,7 @@ ALTER TABLE `transactions`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `withdraws`
